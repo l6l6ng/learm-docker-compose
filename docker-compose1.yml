@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+      - reids
+  reids:
+    image: redis
+  db:
+    image: postgres

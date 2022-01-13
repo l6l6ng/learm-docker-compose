@@ -1,1 +1,29 @@
-version: '3.8'
+version: "3.5"
+services:
+  web-fe:
+    build: .
+    command: python app.py
+    ports:
+      - target: 5000
+        published: 5000
+    networks:
+      - counter-net
+    volumes:
+      - type: volume
+        source: conter-vol
+        target: /code
+  redis:
+    image: "redis:alpine"
+    networks:
+      counter-net:
+
+networks:
+  counter-net:
+#networks:
+#  over-net:
+#    driver: overlay
+#    attachable:true
+
+
+volumes:
+  counter-net:
